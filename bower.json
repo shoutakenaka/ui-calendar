@@ -18,9 +18,9 @@
   "dependencies": {
     "angular": "~1.2.x",
     "moment": "2.5.1",
-    "jquery": "~1.10.2",
-    "jquery-ui": "~1.10.3",
-    "fullcalendar": "~1.x"
+    "jquery": "~2.x",
+    "jquery-ui": "~1.x",
+    "fullcalendar": "~2.x"
   },
   "devDependencies": {
     "angular-mocks": "~1.x",

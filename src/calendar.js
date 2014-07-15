@@ -216,6 +216,9 @@ angular.module('ui.calendar', [])
         }
 
         scope.destroy = function(){
+          if(scope.calendar && scope.calendar.fullCalendar){
+            scope.calendar.fullCalendar('destroy');
+          }
           if(attrs.calendar) {
             scope.calendar = scope.$parent[attrs.calendar] =  elm.html('');
           } else {
@@ -228,8 +231,8 @@ angular.module('ui.calendar', [])
         };
 
         eventSourcesWatcher.onAdded = function(source) {
-          scope.calendar.fullCalendar('addEventSource', source);
-          sourcesChanged = true;
+            scope.calendar.fullCalendar('addEventSource', source);
+            sourcesChanged = true;
         };
 
         eventSourcesWatcher.onRemoved = function(source) {
@@ -242,7 +245,9 @@ angular.module('ui.calendar', [])
         };
 
         eventsWatcher.onRemoved = function(event) {
-          scope.calendar.fullCalendar('removeEvents', function(e) { return e === event; });
+          scope.calendar.fullCalendar('removeEvents', function(e) { 
+            return e.__uiCalId === event.__uiCalId; 
+          });
         };
 
         eventsWatcher.onChanged = function(event) {
